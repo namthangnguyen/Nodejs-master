@@ -1,0 +1,77 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/profile.css">
+
+<%- include('header'); -%>
+
+<div class="container emp-profile">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="profile-img">
+					<img src="/images/<%= user.avatar %>" alt="avt" />
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="profile-head">
+					<h3><%= user.name %></h3>
+					<h6>Web Developer and Designer</h6>
+					<p class="proile-rating">EMAIL : <span><%= user.email %></span></p>
+					<p class="proile-rating">PHONE : <span><%= user.phone %></span></p>
+					<p class="proile-rating">ADDRESS : <span><%= user.address %></span></p>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<% if (isOwner) { %>
+					<button type="submit" class="profile-edit-btn" data-toggle="modal" data-target="#editPost">Edit Profile</button>
+				<% } %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<% if (isOwner) { %>
+					<form action="/user/<%= user._id %>/upload-avatar" method="POST" enctype="multipart/form-data">
+						<input type="file" name="avatar" accept="image/*"/>
+						<button type="submit" class="btn btn-primary">Change</button>
+					</form>
+				<% } %>
+				<div class="profile-work">
+					<p>WORK LINK</p>
+					<a href="">Followers</a><br/>
+					<a href="">Following</a><br/>
+					<a href="">Articles</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="editPost" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<form action="/user/<%= user._id %>" method="POST">
+							<div class="form-group">
+								<input type="text" class="form-control" name="name" value="<%= user.name %>">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="email" value="<%= user.email %>">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="phone" value="<%= user.phone %>">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="address" value="<%= user.address %>">
+							</div>
+							<div class="form-group btn-toolbar justify-content-between">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Save changes</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>

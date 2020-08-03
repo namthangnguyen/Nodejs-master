@@ -1,0 +1,64 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="/home.css">
+
+<%- include('header'); -%>
+
+<div class="container gedf-wrapper">
+  <div class="row">
+    <div class="col-md-8 offset-2 gedf-main">
+      <div class="card gedf-card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#" aria-controls="posts" aria-selected="true">Make a publication</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="posts" aria-labelledby="posts-tab">
+              <form action="/new-post" method="POST">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="title" placeholder="Post title">
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="content" rows="2" placeholder="What are you thinking?"></textarea>
+                </div>
+                <div class="form-group btn-toolbar justify-content-between">
+                  <button type="submit" class="btn btn-primary">Share</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% posts.forEach((post) => { %>
+        <div class="card gedf-card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="/user/<%= post.poster._id %>">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="mr-2">
+                      <img class="rounded-circle" width="45" src="/images/<%= post.poster.avatar %>" alt="avatar">
+                    </div>
+                    <div class="ml-2">
+                      <div class="h5"><%= post.poster.name %></div>
+                    </div>
+                  </div>
+              </a>
+              <div class="text-muted h7 mb-2">
+                <i class="fa fa-clock-o"></i> <%= post.created.getDate() %>/<%= post.created.getMonth() %>/<%= post.created.getFullYear() %>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <a class="card-link" href="/post/<%= post._id %>"><h5 class="card-title"><%= post.title %></h5></a>
+            <p class="card-text"><%= post.content %></p>
+          </div>
+        </div>
+      <% }) %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+{
+  "name": "route-param-query-param",
+  "version": "1.0.0",
+  "description": "Route paths - route param - query param",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "namthangnguyen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.10",
+    "nodemon": "^1.19.1",
+    "pug": "^2.0.4"
+  }
+}

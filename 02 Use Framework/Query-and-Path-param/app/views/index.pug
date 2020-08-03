@@ -1,0 +1,45 @@
+extends ./general
+block content
+  .container-fluid.my-5
+      .row
+        .col-8.offset-2
+          .card
+            .card-header.bg-primary.text-white.text-uppercase Users
+            .card-body
+              form.seach-form(action="/users/search")
+                .container
+                  h2 Searching
+                  .row
+                    .col-6
+                      .form-group
+                        label(for='name') Name
+                        input#name.form-control(name="name", type='text')
+                    .col-6
+                      .form-group
+                        label(for='age') Age
+                        input#age.form-control(name="age", type='number')
+                    .col-12
+                      button.btn.btn-primary(type='submit') Search
+
+              .users.my-3 
+                h2.text-center.text-info.my-3 All users
+                if users.length > 0
+                  table.table.table-bordered
+                    thead
+                      tr.bg-info.text-white
+                        th  Name
+                        th  Email
+                        th  Age 
+                        th  Action 
+                    tbody
+                      each user in users
+                        tr
+                          td=  user.name 
+                          td=  user.email
+                          td=  user.age 
+                          td
+                            a.btn.btn-info(href="/users/" + user.id) View
+                else
+                  p No user to display
+
+              a.btn.btn-primary(href="/users/create") Create new user

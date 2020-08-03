@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Node.js upload files</title>
+    <!-- Get bootstrap from CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Node.js upload files</h2>
+                <br>
+                <form action="/uploadfile" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="example-input-file">Upload a file</label>
+                        <input type="file" name="myfile" class="form-control-file border">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <hr>
+                <form action="/uploadmultiple" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="example-input-file">Upload files</label>
+                        <!-- multiple cho phép chọn nhiều file, accept="image/*" chỉ cho phép chọn file có minetype = image/*-->
+                        <input type="file" name="myfiles" class="form-control-file border" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <hr>
+                <form action="/upload/photo" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="example-input-file">Get something</label>
+                        <input type="file" name="picture" accept="image/*" class="form-control-file border">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
